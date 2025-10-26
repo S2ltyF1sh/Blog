@@ -19,6 +19,7 @@ import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
 import "katex/dist/katex.css";
+import FriendlyLinks from "../components/FriendlyLinks.astro";
 
 interface Props {
 	title?: string;
@@ -195,22 +196,19 @@ const bannerOffset =
 </style>
 
 <script>
-import 'overlayscrollbars/overlayscrollbars.css';
 import {
-	OverlayScrollbars,
-	// ScrollbarsHidingPlugin,
-	// SizeObserverPlugin,
-	// ClickScrollPlugin
+OverlayScrollbars,
 } from 'overlayscrollbars';
-import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
-import {pathsEqual, url} from "../utils/url-utils";
-import {
-	BANNER_HEIGHT,
-	BANNER_HEIGHT_HOME,
-	BANNER_HEIGHT_EXTEND,
-	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT
-} from "../constants/constants";
+import 'overlayscrollbars/overlayscrollbars.css';
 import { siteConfig } from '../config';
+import {
+BANNER_HEIGHT,
+BANNER_HEIGHT_EXTEND,
+BANNER_HEIGHT_HOME,
+MAIN_PANEL_OVERLAPS_BANNER_HEIGHT
+} from "../constants/constants";
+import { getHue, getStoredTheme, setHue, setTheme } from "../utils/setting-utils";
+import { pathsEqual, url } from "../utils/url-utils";
 
 /* Preload fonts */
 // (async function() {
@@ -565,3 +563,4 @@ if (window.swup) {
 	document.addEventListener("swup:enable", setup)
 }
 </script>
+

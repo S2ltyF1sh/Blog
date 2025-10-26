@@ -1,0 +1,46 @@
+---
+// 仅使用 Astro/JSX 风格渲染，样式可按需调整
+import { friendlyLinks } from "../data/friendlyLinks";
+
+// 过滤和排序友链
+const filteredLinks = friendlyLinks
+	.filter((f) => f.visible !== false)
+	.sort((a, b) => (b.order || 0) - (a.order || 0));
+
+// 简化的图片解析函数
+const resolveLogo = (logo: string | undefined): string | undefined => {
+	if (!logo) return undefined;
+	// 如果是相对路径，直接返回（Astro会自动处理静态资源）
+	if (logo.startsWith("/") || logo.startsWith("./") || logo.startsWith("../")) {
+		return logo;
+	}
+	// 如果是完整URL，直接返回
+	if (logo.startsWith("http")) {
+		return logo;
+	}
+	return undefined;
+};
+---
+<style>
+.friend-list { display:flex; flex-wrap:wrap; gap:12px; padding:0; margin:0; list-style:none; }
+.friend-item { display:flex; align-items:center; gap:10px; background:#f7f7f7; padding:8px 12px; border-radius:8px; }
+.friend-item img { width:40px; height:40px; border-radius:6px; object-fit:cover; }
+.friend-meta { display:flex; flex-direction:column; line-height:1; }
+.friend-name { font-weight:600; font-size:0.95rem; }
+.friend-desc { font-size:0.82rem; color:#666; }
+</style>
+
+<ul class="friend-list" aria-label="友链">
+    {filteredLinks.map(f => {
+        const src = resolveLogo(f.logo);
+        return (
+            <li class="friend-item">
+                {src ? <img src={src} alt={f.name} /> : null}
+                <div class="friend-meta">
+                    <a class="friend-name" href={f.url} target={f.target ?? '_blank'} rel={f.rel ?? 'noopener noreferrer'}>{f.name}</a>
+                    {f.description ? <span class="friend-desc">{f.description}</span> : null}
+                </div>
+            </li>
+        )
+    })}
+</ul>

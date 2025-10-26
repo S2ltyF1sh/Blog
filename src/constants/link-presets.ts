@@ -15,4 +15,8 @@ export const LinkPresets: { [key in LinkPreset]: NavBarLink } = {
 		name: i18n(I18nKey.archive),
 		url: "/archive/",
 	},
+	[LinkPreset.freindlyLinks]: {
+		name: i18n(I18nKey.freindlyLinks),
+		url: "/freinds/",
+	},
 };
