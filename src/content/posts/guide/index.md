@@ -3,8 +3,8 @@ title: 博客显示所需格式
 published: 2025-10-25
 description: "这是Fuwari自带的文档总和（并不是总结）"
 image: "./cover.jpeg"
-tags: ["Fuwari", "Blogging"]
-category: Guides
+tags: ["Fuwari", "博客"]
+category: 引导
 draft: false
 ---
 
